@@ -341,27 +341,17 @@
     </a>
 
     <!-- Script do botão de voltar ao topo -->
-    <script>
-      (function () {
-        const btn = document.querySelector('.scroll-top-btn');
-        if (!btn) return;
-
-        function toggleScrollTopBtn() {
-          if (window.scrollY > 400) {
-            btn.classList.add('visible');
-          } else {
-            btn.classList.remove('visible');
-          }
-        }
-
-        window.addEventListener('scroll', toggleScrollTopBtn);
-        toggleScrollTopBtn();
-      })();
-    </script>
+      <!-- Botão simples de voltar ao topo -->
+    <a href="#inicio" class="scroll-top-btn" aria-label="Voltar ao topo da página">
+      ↑
+    </a>
+  </body>
+</html>
   </body>
 </html>
 </body>
 </html>
+
 
 
 
