@@ -625,7 +625,7 @@ textarea {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #00bfa6;     /* verde/azulado dos teus botões – ajusta se quiseres */
+  background: #00bfa6;     /* verde/azulado dos teus botões */
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -641,7 +641,7 @@ textarea {
   pointer-events: none;
   transform: translateY(8px);
   transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 900;            /* o WhatsApp tu já tens a 1000, por isso fica logo abaixo */
+  z-index: 900;
 }
 
 /* quando estiver visível */
@@ -651,7 +651,7 @@ textarea {
   transform: translateY(0);
 }
 
-/* ligeiro efeito ao passar o rato */
+/* efeito ao passar o rato */
 .back-to-top:hover {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
   transform: translateY(-2px);
@@ -667,10 +667,3 @@ textarea {
     font-size: 20px;
   }
 }
-
-
-
-
-
-
-
