@@ -561,4 +561,40 @@ textarea {
     height: 54px;
   }
 }
+/* ===== CABECERA Y LOGO ===== */
+
+/* La cabecera ocupa una fila: logo a la izquierda, menú a la derecha */
+.site-header {
+  background-color: #ffffff;
+  padding: 10px 5%;
+}
+
+/* El contenedor interior alinea logo y menú en una línea */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Enlace del logo (por si el navegador lo trata como inline) */
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+/* TAMAÑO DEL LOGO */
+/* Aquí es donde lo hacemos grande */
+.logo-image {
+  height: 80px;    /* sube o baja este valor: 70–90px según te guste */
+  width: auto;
+  display: block;
+}
+
+/* En móvil lo hacemos un poco más pequeño para que todo quepa bien */
+@media (max-width: 768px) {
+  .logo-image {
+    height: 60px;
+  }
+}
+
 
