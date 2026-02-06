@@ -617,15 +617,14 @@ textarea {
   .logo-image {
     height: 60px;
 }
-/* BOTÃO VOLTAR AO TOPO (pequeno, ao lado do WhatsApp) */
 .back-to-top {
   position: fixed;
   right: 18px;
-  bottom: 90px;            /* fica acima do botão de WhatsApp */
+  bottom: 90px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #00bfa6;     /* verde/azulado dos teus botões */
+  background: red;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -633,37 +632,6 @@ textarea {
   font-size: 22px;
   font-weight: bold;
   text-decoration: none;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-  cursor: pointer;
-
-  /* começa escondido */
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 900;
-}
-
-/* quando estiver visível */
-.back-to-top.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-/* efeito ao passar o rato */
-.back-to-top:hover {
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-  transform: translateY(-2px);
-}
-
-/* em ecrãs pequenos */
-@media (max-width: 600px) {
-  .back-to-top {
-    right: 14px;
-    bottom: 88px;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
+  z-index: 9999;
+  /* SEM opacity 0, SEM pointer-events none, SEM transform */
 }
