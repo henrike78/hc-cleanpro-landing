@@ -36,29 +36,44 @@ body {
 
 /* HEADER */
 
+/* ===== CABECERA Y LOGO (AJUSTE DEFINITIVO) ===== */
+
+/* Cabecera un poco más fina */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
   background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  padding: 6px 5%;
 }
 
+/* Logo a la izquierda, menú a la derecha */
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1.5rem;
 }
 
+/* Enlace del logo */
 .logo-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
 }
-/* Tamaño del logo en el header */
-.logo-img {
-  height: 72px;      /* prueba con 72–80px hasta que te guste */
+
+/* TAMAÑO REAL DEL LOGO */
+.logo-image {
+  width: 220px !important;      /* aquí mandas tú: 200–240px según te guste */
+  height: auto !important;
+  max-height: none !important;
+  display: block;
+}
+
+/* Ajuste en móvil: logo un poco más pequeño */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 4px 4%;
+  }
+
+  .logo-image {
+    width: 170px !important;
+  }
   width: auto;
   display: block;
 }
@@ -596,5 +611,6 @@ textarea {
     height: 60px;
   }
 }
+
 
 
