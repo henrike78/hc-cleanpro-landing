@@ -333,24 +333,39 @@
       />
     </svg>
   </a>
-      <!-- Botão de voltar ao topo -->
-    <a href="#inicio" class="scroll-top-btn" aria-label="Voltar ao topo da página">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 4l-7 7h4v5h6v-5h4z" fill="currentColor" />
-      </svg>
-    </a>
-
-    <!-- Script do botão de voltar ao topo -->
-      <!-- Botão simples de voltar ao topo -->
-    <a href="#inicio" class="scroll-top-btn" aria-label="Voltar ao topo da página">
+      <!-- Botão flutuante para voltar ao topo -->
+    <a href="#inicio" class="back-to-top" aria-label="Voltar ao início da página">
       ↑
     </a>
+
+    <script>
+      // Mostrar/esconder o botão quando se faz scroll
+      document.addEventListener('DOMContentLoaded', function () {
+        const btn = document.querySelector('.back-to-top');
+        if (!btn) return;
+
+        function toggleBtn() {
+          if (window.scrollY > 400) {
+            btn.classList.add('is-visible');
+          } else {
+            btn.classList.remove('is-visible');
+          }
+        }
+
+        window.addEventListener('scroll', toggleBtn);
+        toggleBtn();
+      });
+    </script>
+  </body>
+</html>
+
   </body>
 </html>
   </body>
 </html>
 </body>
 </html>
+
 
 
 
