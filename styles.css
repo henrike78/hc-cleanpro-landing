@@ -56,7 +56,22 @@ body {
   display: inline-flex;
   align-items: center;
 }
+/* Tamaño del logo en el header */
+.logo-img {
+  height: 72px;      /* prueba con 72–80px hasta que te guste */
+  width: auto;
+  display: block;
+}
 
+.site-header {
+  padding: 8px 0;    /* hace que el header no se haga enorme */
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 56px;    /* un poco más pequeño en móvil */
+  }
+}
 .logo-image {
   height: 72px;
   width: auto;
@@ -546,3 +561,4 @@ textarea {
     height: 54px;
   }
 }
+
