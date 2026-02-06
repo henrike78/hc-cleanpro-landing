@@ -356,6 +356,32 @@
         toggleBtn();
       });
     </script>
+      <!-- Botão flutuante para voltar ao topo -->
+    <a href="#inicio" class="back-to-top" aria-label="Voltar ao início da página">
+      ↑
+    </a>
+
+    <script>
+      // Mostrar/esconder o botão quando se faz scroll
+      const backToTopBtn = document.querySelector('.back-to-top');
+
+      function toggleBackToTop() {
+        if (!backToTopBtn) return;
+
+        if (window.scrollY > 400) {
+          backToTopBtn.classList.add('is-visible');
+        } else {
+          backToTopBtn.classList.remove('is-visible');
+        }
+      }
+
+      window.addEventListener('scroll', toggleBackToTop);
+      // chama uma vez ao carregar a página
+      toggleBackToTop();
+    </script>
+  </body>
+</html>
+
   </body>
 </html>
 
@@ -365,6 +391,7 @@
 </html>
 </body>
 </html>
+
 
 
 
