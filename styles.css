@@ -485,17 +485,41 @@ textarea {
     position: fixed;
     right: 18px;
     bottom: 18px;
-    width: 60px;              /* tamaño del círculo */
+    width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #25D366;  /* verde oficial WhatsApp */
+    /* el círculo verde lo vamos a dibujar con el SVG, así que fondo transparente */
+    background-color: transparent;
     box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;           /* icono blanco */
+    color: #ffffff;             /* color base para el icono (teléfono) */
     text-decoration: none;
     z-index: 1000;
+}
+
+/* Tamaño del icono */
+.whatsapp-float svg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;         /* por si el SVG no viene redondo */
+}
+
+/* Círculo de fondo del icono: VERDE */
+.whatsapp-float circle {
+    fill: #25D366 !important;   /* verde oficial WhatsApp */
+}
+
+/* Teléfono / bocadillo: BLANCO */
+.whatsapp-float path {
+    fill: #ffffff !important;
+}
+
+/* Efecto al pasar el ratón */
+.whatsapp-float:hover {
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.75);
+    transform: translateY(-2px);
 }
 
 /* RESPONSIVE */
@@ -590,6 +614,7 @@ textarea {
     height: 60px;
   }
 }
+
 
 
 
