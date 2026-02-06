@@ -26,6 +26,9 @@ body {
   color: var(--hc-text);
   line-height: 1.6;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 /* CONTENEDOR GENERAL */
 .container {
@@ -614,7 +617,55 @@ textarea {
   .logo-image {
     height: 60px;
   }
+/* BOTÃO VOLTAR AO TOPO */
+.scroll-top-btn {
+  position: fixed;
+  right: 18px;
+  bottom: 90px; /* fica por cima do botão de WhatsApp */
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #143b8f; /* azul principal da marca (podes ajustar) */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 900; /* abaixo do WhatsApp (1000), mas acima do resto */
 }
+
+.scroll-top-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Quando está visível */
+.scroll-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Hover */
+.scroll-top-btn:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Em ecrãs pequenos, sobe um bocadinho mais o botão */
+@media (max-width: 600px) {
+  .scroll-top-btn {
+    right: 14px;
+    bottom: 88px;
+  }
+}
+
+
 
 
 
