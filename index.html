@@ -333,7 +333,35 @@
       />
     </svg>
   </a>
+      <!-- Botão de voltar ao topo -->
+    <a href="#inicio" class="scroll-top-btn" aria-label="Voltar ao topo da página">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 4l-7 7h4v5h6v-5h4z" fill="currentColor" />
+      </svg>
+    </a>
+
+    <!-- Script do botão de voltar ao topo -->
+    <script>
+      (function () {
+        const btn = document.querySelector('.scroll-top-btn');
+        if (!btn) return;
+
+        function toggleScrollTopBtn() {
+          if (window.scrollY > 400) {
+            btn.classList.add('visible');
+          } else {
+            btn.classList.remove('visible');
+          }
+        }
+
+        window.addEventListener('scroll', toggleScrollTopBtn);
+        toggleScrollTopBtn();
+      })();
+    </script>
+  </body>
+</html>
 </body>
 </html>
+
 
 
