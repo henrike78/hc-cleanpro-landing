@@ -485,6 +485,7 @@ textarea {
 /* BOTÓN WHATSAPP FLOTANTE */
 
 /* BOTÓN WHATSAPP FLOTANTE */
+/* BOTÓN WHATSAPP FLOTANTE */
 .whatsapp-float {
   position: fixed;
   right: 18px;
@@ -492,18 +493,21 @@ textarea {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #25D366;              /* verde WhatsApp */
+  background-color: #25d366;              /* verde oficial WhatsApp */
   box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #ffffff;
   z-index: 1000;
+
+  /* por si queda texto dentro (WhatsApp, Wha, etc.) */
+  font-size: 0;
+  color: transparent;
 }
 
-/* Imagen del logo dentro del botón */
-.whatsapp-float .whatsapp-icon {
+/* Imagen del icono */
+.whatsapp-icon {
   width: 32px;
   height: 32px;
   object-fit: contain;
@@ -680,6 +684,7 @@ textarea {
   border-radius: 20px 20px 12px 12px;
   display: block;
 }
+
 
 
 
