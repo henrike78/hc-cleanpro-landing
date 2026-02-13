@@ -484,34 +484,51 @@ textarea {
 
 /* BOTÓN WHATSAPP FLOTANTE */
 
+/* BOTÓN WHATSAPP FLOTANTE */
 .whatsapp-float {
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    /* el círculo verde lo vamos a dibujar con el SVG, así que fondo transparente */
-    background-color: transparent;
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;             /* color base para el icono (teléfono) */
-    text-decoration: none;
-    z-index: 1000;
-  .whatsapp-float img,
-.whatsapp-icon {
-    width: 60px;
-    height: 60px;
-    display: block;
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #25D366;              /* verde WhatsApp */
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  z-index: 1000;
 }
 
-/* Efecto al pasar el ratón */
+/* Imagen del logo dentro del botón */
+.whatsapp-float .whatsapp-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Efecto al pasar el ratón (en desktop) */
 .whatsapp-float:hover {
-    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.75);
-    transform: translateY(-2px);
-    transition: all 0.2s ease;
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.75);
+  transform: translateY(-2px);
+}
+
+/* Ajuste ligero para pantallas pequeñas */
+@media (max-width: 600px) {
+  .whatsapp-float {
+    right: 16px;
+    bottom: 16px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .whatsapp-float .whatsapp-icon {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 /* RESPONSIVE */
@@ -663,5 +680,6 @@ textarea {
   border-radius: 20px 20px 12px 12px;
   display: block;
 }
+
 
 
