@@ -32,6 +32,24 @@
       review:'Review summary', edit:'Edit', reset:'Start again', summary:'Review your request', send:'Open email to H&C Clean Pro', delivery:'This opens your email app. Add your contact details there and send the message. This website has not sent your request.', subject:'H&C Clean Pro quote request', consent:'I want to open my email app with this summary to request a quote.', unknown:'Not specified', body:'Hello H&C Clean Pro, I would like a quote. I understand that the price, scope and date need confirmation.', service:'Service', copy:'Select and copy the summary if your email app does not open. You can also email hyccleanpro@gmail.com.'
     }
   };
+  Object.assign(texts.es, {
+    send:'Continuar al formulario',
+    delivery:'Añade tu nombre y correo en el formulario de contacto. Después podrás enviar la solicitud desde la web. Todavía no se ha enviado nada.',
+    consent:'Quiero trasladar este resumen al formulario de contacto.',
+    copy:'El resumen seguirá siendo editable antes de enviarlo. También puedes escribir a hyccleanpro@gmail.com.'
+  });
+  Object.assign(texts.ca, {
+    send:'Continuar al formulari',
+    delivery:'Afegeix el nom i el correu al formulari de contacte. Després podràs enviar la sol·licitud des de la web. Encara no s’ha enviat res.',
+    consent:'Vull traslladar aquest resum al formulari de contacte.',
+    copy:'Podràs editar el resum abans d’enviar-lo. També pots escriure a hyccleanpro@gmail.com.'
+  });
+  Object.assign(texts.en, {
+    send:'Continue to contact form',
+    delivery:'Add your name and email in the contact form. You can then submit your request from the website. Nothing has been sent yet.',
+    consent:'I want to transfer this summary to the contact form.',
+    copy:'You can edit the summary before sending it. You can also email hyccleanpro@gmail.com.'
+  });
   let lang = /^ca/i.test(navigator.language) ? 'ca' : /^en/i.test(navigator.language) ? 'en' : 'es';
   let step = 'home', service = 0;
   const values = {area:'',size:'',frequency:'0',date:''};
@@ -83,9 +101,22 @@
       content.append(el('p',t.summary),el('div',summary(),'hc-summary'),el('p',t.delivery,'hc-note'));
       const consent=el('input');consent.type='checkbox';consent.id='hc-consent';consent.style.width='auto';
       const label=el('label',t.consent);label.htmlFor=consent.id;
-      const send=el('a',t.send,'hc-mail hc-primary');
+      const send=button(t.send,()=>{
+        const target=document.getElementById('contact-form');
+        const message=document.getElementById('mensaje');
+        const name=document.getElementById('nombre');
+        if(!consent.checked || !target || !message || !name) return;
+        message.value=summary();
+        const serviceField=document.getElementById('servicio');
+        if(serviceField) serviceField.value=['Comunidad','Oficina','Fin de obra'][service];
+        close();
+        target.scrollIntoView({behavior:'auto',block:'center'});
+        name.focus({preventScroll:true});
+      },true);
+      send.classList.add('hc-mail');
+      send.disabled=true;
       send.setAttribute('aria-disabled','true');
-      consent.addEventListener('change',()=>{if(consent.checked)send.href=`mailto:hyccleanpro@gmail.com?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(summary())}`;else send.removeAttribute('href');send.setAttribute('aria-disabled',String(!consent.checked));});
+      consent.addEventListener('change',()=>{send.disabled=!consent.checked;send.setAttribute('aria-disabled',String(!consent.checked));});
       content.append(consent,label,send,el('p',t.copy,'hc-note'),button(t.edit,()=>navigate('form')),button(t.reset,()=>{Object.keys(values).forEach(k=>values[k]=k==='frequency'?'0':'');navigate('home');}));
     }
     const contact=el('a',t.human);contact.href='mailto:hyccleanpro@gmail.com';content.append(el('p'),contact);

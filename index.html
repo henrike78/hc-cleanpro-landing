@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="assistant.css" />
   <script src="assistant.js" defer></script>
+  <script src="contact.js" defer></script>
 </head>
 <body>
   <!-- CABECERA -->
@@ -66,7 +67,7 @@
             <ul class="feature-list">
               <li>Retirada de polvo fino de obra en todas las superficies.</li>
               <li>Limpieza a fondo de baños y cocinas recién instaladas.</li>
-              <li>Ventanas, marcos, persianas y cristales sin restos de pintura.</li>
+              <li>Limpieza de ventanas, marcos, persianas y cristales según su estado y material.</li>
               <li>Suelo listo para entrar a vivir o entregar al cliente.</li>
             </ul>
           </div>
@@ -100,9 +101,9 @@
           <article class="card service-card">
             <h3>Limpieza de fin de obra y reformas</h3>
             <ul class="feature-list">
-              <li>Vaciado de polvo de paredes, techos y enchufes.</li>
+              <li>Retirada de polvo en superficies accesibles, según el alcance acordado.</li>
               <li>Limpieza de carpintería, cristales y marcos recién instalados.</li>
-              <li>Baños y cocinas desincrustados, sin restos de cemento ni silicona.</li>
+              <li>Limpieza de baños y cocinas; los restos adheridos requieren valoración previa.</li>
               <li>Perfecto para constructoras, reformas pequeñas o pisos particulares.</li>
             </ul>
           </article>
@@ -149,17 +150,17 @@
             <span class="step-number">3</span>
             <h3>Trabajo constante</h3>
             <p>
-              Siempre vienen las mismas personas, a la hora acordada. Si surge algún cambio o
+              Acordamos contigo la frecuencia y el horario del servicio. Si surge algún cambio o
               incidencia, lo comentamos por correo para acordar cómo resolverla.
             </p>
           </article>
 
           <article class="card step-card">
             <span class="step-number">4</span>
-            <h3>Revisión y fotos</h3>
+            <h3>Revisión del trabajo</h3>
             <p>
-              En limpiezas de fin de obra enviamos fotos del antes y el después. En comunidades, si
-              lo quieres, también podemos hacer fotos puntuales para que veas cómo queda todo.
+              Si necesitas fotografías del resultado, consúltalo antes de contratar para acordar
+              si se incluyen y cómo se realizarán respetando la privacidad del espacio.
             </p>
           </article>
         </div>
@@ -240,6 +241,30 @@
       </div>
     </section>
 
+    <section id="preguntas-frecuentes" class="section">
+      <div class="container">
+        <h2>Preguntas frecuentes</h2>
+        <div class="faq-list">
+          <details>
+            <summary>¿Qué información necesitáis para preparar un presupuesto?</summary>
+            <p>El tipo de limpieza, el municipio o barrio, la superficie aproximada, la frecuencia y la fecha deseada. Si hace falta, acordaremos una visita para valorar el trabajo. La fecha y el precio requieren confirmación.</p>
+          </details>
+          <details>
+            <summary>¿En qué zonas trabajáis?</summary>
+            <p>Principalmente en Barcelona ciudad y alrededores, incluidos Nou Barris, Horta-Guinardó y Sant Andreu. Para otras localidades, indícanos la zona y confirmaremos si podemos atender el servicio.</p>
+          </details>
+          <details>
+            <summary>¿Qué incluye la limpieza?</summary>
+            <p>Depende del espacio y del servicio. Antes de contratar, acordaremos las zonas, las tareas y la frecuencia que se incluyen en el presupuesto. Los materiales delicados y los restos adheridos de obra necesitan valoración previa.</p>
+          </details>
+          <details>
+            <summary>¿Puedo reservar una fecha desde la web?</summary>
+            <p>Puedes indicar tu fecha preferida al solicitar presupuesto. El formulario y el asistente no realizan reservas: H&amp;C Clean Pro debe confirmar la disponibilidad y las condiciones por correo.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACTO -->
     <section id="contacto" class="section section-contact">
       <div class="container contact-grid">
@@ -252,23 +277,24 @@
 
           <form
             class="contact-form"
+            id="contact-form"
             action="mailto:hyccleanpro@gmail.com"
             method="POST"
             enctype="text/plain"
           >
             <div class="form-group">
               <label for="nombre">Nombre</label>
-              <input id="nombre" name="Nombre" type="text" required />
+              <input id="nombre" name="name" type="text" autocomplete="given-name" maxlength="80" required />
             </div>
 
             <div class="form-group">
               <label for="email">Correo electrónico</label>
-              <input id="email" name="Email" type="email" required />
+              <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required />
             </div>
 
             <div class="form-group">
               <label for="telefono">Teléfono (opcional)</label>
-              <input id="telefono" name="Telefono" type="tel" />
+              <input id="telefono" name="Telefono" type="tel" autocomplete="tel" maxlength="30" />
             </div>
 
             <div class="form-group">
@@ -283,10 +309,11 @@
 
             <div class="form-group">
               <label for="mensaje">Qué necesitas</label>
-              <textarea id="mensaje" name="Mensaje" rows="4" required></textarea>
+              <textarea id="mensaje" name="Mensaje" rows="4" maxlength="2000" required></textarea>
             </div>
 
-            <p class="mini-note">Este formulario abre tu aplicación de correo. Revisa el mensaje y envíalo desde allí. No incluyas datos sensibles ni códigos de acceso.</p>
+            <p class="mini-note" id="contact-notice">Este formulario abre tu aplicación de correo. Revisa el mensaje y envíalo desde allí. No incluyas datos sensibles ni códigos de acceso.</p>
+            <p id="contact-status" role="status" aria-live="polite"></p>
             <button type="submit" class="btn btn-primary">Preparar correo</button>
           </form>
         </div>
