@@ -1,3 +1,24 @@
+/* Navegación: conservar la distribución y dar un foco claro al teclado. */
+.site-header .main-nav a {
+  text-decoration: none;
+  border-radius: 3px;
+  transition: color 0.15s ease;
+}
+.site-header .main-nav a:focus-visible {
+  outline: 2px solid var(--hc-primary-dark);
+  outline-offset: 6px;
+  color: var(--hc-primary-dark);
+}
+.site-header .main-nav a:focus-visible::after {
+  width: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header .main-nav a,
+  .site-header .main-nav a::after {
+    transition: none;
+  }
+}
+
 /* Ampliar el logo sin modificar el espacio que ocupa la cabecera. */
 .site-header .logo-image {
   transform: scale(1.4);
