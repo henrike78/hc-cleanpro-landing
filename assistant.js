@@ -33,26 +33,32 @@
     }
   };
   Object.assign(texts.es, {
-    send:'Continuar al formulario',
-    delivery:'Añade tu nombre y correo en el formulario de contacto. Después podrás enviar la solicitud desde la web. Todavía no se ha enviado nada.',
-    consent:'Quiero trasladar este resumen al formulario de contacto.',
-    copy:'El resumen seguirá siendo editable antes de enviarlo. También puedes escribir a hyccleanpro@gmail.com.'
+    send:'Enviar solicitud', name:'Nombre', email:'Correo electrónico', sending:'Enviando…',
+    delivery:'Revisa el resumen y añade tu nombre y correo para recibir respuesta. Envía tu solicitud aquí mismo, sin abrir tu aplicación de correo.',
+    provider:'Al enviar, Formspree recibirá tu nombre, correo y resumen para trasladar la solicitud a H&C Clean Pro. No incluyas datos sensibles ni códigos de acceso.',
+    success:'Formspree ha recibido tu solicitud para H&C Clean Pro. El precio y la disponibilidad siguen pendientes de confirmación.',
+    error:'No hemos podido confirmar el envío. Tus datos siguen aquí. Puedes reintentarlo o escribir a hyccleanpro@gmail.com. Si el envío anterior llegó, reintentarlo podría duplicarlo.'
   });
   Object.assign(texts.ca, {
-    send:'Continuar al formulari',
-    delivery:'Afegeix el nom i el correu al formulari de contacte. Després podràs enviar la sol·licitud des de la web. Encara no s’ha enviat res.',
-    consent:'Vull traslladar aquest resum al formulari de contacte.',
-    copy:'Podràs editar el resum abans d’enviar-lo. També pots escriure a hyccleanpro@gmail.com.'
+    send:'Enviar sol·licitud', name:'Nom', email:'Correu electrònic', sending:'Enviant…',
+    delivery:'Revisa el resum i afegeix el nom i el correu per rebre resposta. Envia la sol·licitud aquí mateix, sense obrir l’aplicació de correu.',
+    provider:'En enviar, Formspree rebrà el nom, el correu i el resum per traslladar la sol·licitud a H&C Clean Pro. No incloguis dades sensibles ni codis d’accés.',
+    success:'Formspree ha rebut la sol·licitud per a H&C Clean Pro. El preu i la disponibilitat continuen pendents de confirmació.',
+    error:'No hem pogut confirmar l’enviament. Les dades continuen aquí. Pots tornar-ho a provar o escriure a hyccleanpro@gmail.com. Si l’enviament anterior ha arribat, repetir-lo podria duplicar-lo.'
   });
   Object.assign(texts.en, {
-    send:'Continue to contact form',
-    delivery:'Add your name and email in the contact form. You can then submit your request from the website. Nothing has been sent yet.',
-    consent:'I want to transfer this summary to the contact form.',
-    copy:'You can edit the summary before sending it. You can also email hyccleanpro@gmail.com.'
+    send:'Send request', name:'Name', email:'Email address', sending:'Sending…',
+    delivery:'Review your summary and add your name and email so we can reply. Send your request here without opening your email app.',
+    provider:'When you send, Formspree receives your name, email and summary to forward your request to H&C Clean Pro. Do not include sensitive information or access codes.',
+    success:'Formspree has received your request for H&C Clean Pro. Price and availability still need confirmation.',
+    error:'We could not confirm your submission. Your details are still here. Retry or email hyccleanpro@gmail.com. If the previous submission arrived, retrying may create a duplicate.'
   });
   let lang = /^ca/i.test(navigator.language) ? 'ca' : /^en/i.test(navigator.language) ? 'en' : 'es';
   let step = 'home', service = 0;
   const values = {area:'',size:'',frequency:'0',date:''};
+  const contactValues = {name:'',email:''};
+  let sending = false;
+  const endpoint = 'https://formspree.io/f/mrppzyqp';
   const root = document.createElement('aside');
   root.id = 'hc-helper';
   root.innerHTML = '<section class="hc-panel" hidden role="region" aria-labelledby="hc-title"><div class="hc-top"><h2 id="hc-title"></h2><button type="button" data-close></button></div><label for="hc-language"></label><select id="hc-language"><option value="es">Español</option><option value="ca">Català</option><option value="en">English</option></select><div data-content></div></section><button type="button" class="hc-launch" aria-expanded="false" aria-controls="hc-content-panel"></button>';
@@ -97,27 +103,57 @@
       const submit=el('button',t.review,'hc-primary');submit.type='submit';form.append(el('p'),submit);
       form.addEventListener('submit',event=>{event.preventDefault(); values.area=values.area.trim(); if(!values.area){form.querySelector('input').focus();return;}navigate('summary');});
       content.append(form,button(t.back,()=>navigate('service')));
+    } else if(step==='sent') {
+      const success=el('p',t.success);success.setAttribute('role','status');
+      success.tabIndex=-1;
+      content.append(success,button(t.reset,()=>navigate('home'),true));
+      success.focus();
     } else {
       content.append(el('p',t.summary),el('div',summary(),'hc-summary'),el('p',t.delivery,'hc-note'));
-      const consent=el('input');consent.type='checkbox';consent.id='hc-consent';consent.style.width='auto';
-      const label=el('label',t.consent);label.htmlFor=consent.id;
-      const send=button(t.send,()=>{
-        const target=document.getElementById('contact-form');
-        const message=document.getElementById('mensaje');
-        const name=document.getElementById('nombre');
-        if(!consent.checked || !target || !message || !name) return;
-        message.value=summary();
-        const serviceField=document.getElementById('servicio');
-        if(serviceField) serviceField.value=['Comunidad','Oficina','Fin de obra'][service];
-        close();
-        target.scrollIntoView({behavior:'auto',block:'center'});
-        name.focus({preventScroll:true});
-      },true);
-      send.classList.add('hc-mail');
-      send.disabled=true;
-      send.setAttribute('aria-disabled','true');
-      consent.addEventListener('change',()=>{send.disabled=!consent.checked;send.setAttribute('aria-disabled',String(!consent.checked));});
-      content.append(consent,label,send,el('p',t.copy,'hc-note'),button(t.edit,()=>navigate('form')),button(t.reset,()=>{Object.keys(values).forEach(k=>values[k]=k==='frequency'?'0':'');navigate('home');}));
+      const form=el('form');
+      ['name','email'].forEach(key=>{
+        const label=el('label',t[key]);label.htmlFor='hc-contact-'+key;
+        const input=el('input');input.id=label.htmlFor;input.name=key;
+        input.type=key==='email'?'email':'text';input.autocomplete=key==='email'?'email':'given-name';
+        input.maxLength=key==='email'?254:80;input.required=true;input.value=contactValues[key];
+        input.addEventListener('input',()=>{contactValues[key]=input.value;});
+        form.append(label,input);
+      });
+      const status=el('p');status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+      const send=el('button',t.send,'hc-primary');send.type='submit';
+      form.append(el('p',t.provider,'hc-note'),send,status);
+      const edit=button(t.edit,()=>navigate('form'));
+      const reset=button(t.reset,()=>{Object.keys(values).forEach(k=>values[k]=k==='frequency'?'0':'');contactValues.name='';contactValues.email='';navigate('home');});
+      form.addEventListener('submit',async event=>{
+        event.preventDefault();
+        if(sending || !form.reportValidity()) return;
+        const fields=form.querySelectorAll('input');
+        fields.forEach(input=>{contactValues[input.name]=input.value.trim();input.value=contactValues[input.name];});
+        if(!form.reportValidity()) return;
+        sending=true;selector.disabled=true;send.disabled=true;edit.disabled=true;reset.disabled=true;
+        fields.forEach(input=>input.readOnly=true);
+        send.textContent=t.sending;status.textContent=t.sending;form.setAttribute('aria-busy','true');
+        const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),20000);
+        try {
+          const response=await fetch(endpoint,{
+            method:'POST',headers:{Accept:'application/json','Content-Type':'application/json'},
+            body:JSON.stringify({name:contactValues.name,email:contactValues.email,message:summary(),_subject:t.subject}),
+            signal:controller.signal
+          });
+          const result=await response.json();
+          if(!response.ok || result.ok!==true) throw new Error('Submission failed');
+          Object.keys(values).forEach(k=>values[k]=k==='frequency'?'0':'');
+          contactValues.name='';contactValues.email='';
+          step='sent';render();
+        } catch {
+          status.textContent=t.error;
+        } finally {
+          clearTimeout(timer);sending=false;selector.disabled=false;send.disabled=false;edit.disabled=false;reset.disabled=false;
+          fields.forEach(input=>input.readOnly=false);
+          send.textContent=t.send;form.removeAttribute('aria-busy');
+        }
+      });
+      content.append(form,edit,reset);
     }
     const contact=el('a',t.human);contact.href='mailto:hyccleanpro@gmail.com';content.append(el('p'),contact);
   }
