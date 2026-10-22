@@ -9,6 +9,8 @@
     content="H&C Clean Pro es una empresa pequeña de limpieza en Barcelona. Limpieza de comunidades, escaleras, oficinas y pisos de fin de obra, sin contratos raros y con trato cercano."
   />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="assistant.css" />
+  <script src="assistant.js" defer></script>
 </head>
 <body>
   <!-- CABECERA -->
@@ -49,8 +51,8 @@
             <a href="#contacto" class="btn btn-primary">
               Pedir presupuesto sin compromiso
             </a>
-            <a href="https://wa.me/34600000000" class="btn btn-secondary" target="_blank" rel="noopener">
-              Escribir por WhatsApp
+            <a href="mailto:hyccleanpro@gmail.com" class="btn btn-secondary">
+              Escribir por correo
             </a>
           </div>
           <p class="mini-note">
@@ -148,7 +150,7 @@
             <h3>Trabajo constante</h3>
             <p>
               Siempre vienen las mismas personas, a la hora acordada. Si surge algún cambio o
-              incidencia, lo comentamos por WhatsApp o teléfono y lo resolvemos rápido.
+              incidencia, lo comentamos por correo para acordar cómo resolverla.
             </p>
           </article>
 
@@ -245,7 +247,7 @@
           <h2>Contacto</h2>
           <p>
             Cuéntanos qué necesitas y te contestaremos lo antes posible. Si prefieres, puedes
-            escribirnos directamente por WhatsApp o por correo electrónico.
+            escribirnos directamente por correo electrónico.
           </p>
 
           <form
@@ -284,7 +286,8 @@
               <textarea id="mensaje" name="Mensaje" rows="4" required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <p class="mini-note">Este formulario abre tu aplicación de correo. Revisa el mensaje y envíalo desde allí. No incluyas datos sensibles ni códigos de acceso.</p>
+            <button type="submit" class="btn btn-primary">Preparar correo</button>
           </form>
         </div>
 
@@ -297,12 +300,7 @@
               <a href="mailto:hyccleanpro@gmail.com">hyccleanpro@gmail.com</a>
             </p>
             <p>
-              <strong>WhatsApp / Teléfono:</strong>
-              <br />
-              <a href="https://wa.me/34600000000" target="_blank" rel="noopener">
-                +34 600 000 000
-              </a>
-              <!-- TODO: cambia el número de arriba por tu número real -->
+              La atención humana se realiza por correo. WhatsApp todavía no está disponible.
             </p>
             <p>
               <strong>Dirección:</strong>
@@ -333,19 +331,7 @@
 
   <!-- BOTÓN FLOTANTE WHATSAPP -->
   <!-- BOTÓN WHATSAPP FLOTANTE -->
-<a
-  href="https://wa.me/34600000000?text=Hola%20H%26C%20Clean%20Pro,%20me%20gustaría%20pedir%20un%20presupuesto."
-  class="whatsapp-float"
-  target="_blank"
-  rel="noopener"
-  aria-label="Escríbenos por WhatsApp"
->
-  <img
-    src="img/whatsapp-icon.jpg"
-    alt="WhatsApp H&C Clean Pro"
-    class="whatsapp-icon"
-  >
-</a>
+<!-- WhatsApp se activará cuando exista un número del negocio confirmado. -->
       <!-- Botão flutuante para voltar ao topo -->
     <a href="#inicio" class="back-to-top" aria-label="Voltar ao início da página">
       ↑

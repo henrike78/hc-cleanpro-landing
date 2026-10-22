@@ -1,0 +1,22 @@
+#hc-helper { position:fixed; left:16px; bottom:16px; z-index:10000; font:15px/1.5 system-ui,sans-serif; color:#17233c; }
+#hc-helper button, #hc-helper a { font:inherit; }
+#hc-helper button, #hc-helper .hc-mail { cursor:pointer; border:1px solid #b9d6d3; border-radius:12px; padding:10px 14px; background:#fff; color:#1f3c88; }
+#hc-helper button:focus-visible, #hc-helper a:focus-visible, #hc-helper input:focus-visible, #hc-helper select:focus-visible { outline:3px solid #1f3c88; outline-offset:2px; }
+#hc-helper .hc-launch, #hc-helper .hc-primary { background:#00837a; color:#fff; border-color:#00837a; }
+#hc-helper .hc-panel { width:min(390px,calc(100vw - 32px)); max-height:calc(100dvh - 100px); overflow:auto; background:#fff; border:1px solid #cbd5e1; border-radius:18px; box-shadow:0 12px 40px #17233c33; margin-bottom:10px; padding:18px; }
+#hc-helper [hidden] { display:none !important; }
+#hc-helper .hc-top, #hc-helper .hc-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+#hc-helper .hc-top { justify-content:space-between; }
+#hc-helper h2 { font-size:19px; margin:0; }
+#hc-helper p { margin:12px 0; }
+#hc-helper label { margin-top:12px; }
+#hc-helper select, #hc-helper input { box-sizing:border-box; width:100%; min-height:44px; font:inherit; }
+#hc-helper .hc-options { display:grid; gap:8px; }
+#hc-helper .hc-note { font-size:13px; color:#46566a; }
+#hc-helper .hc-summary { white-space:pre-wrap; overflow-wrap:anywhere; background:#f1f6f8; padding:12px; border-radius:10px; }
+#hc-helper .hc-mail { display:inline-block; text-decoration:none; }
+#hc-helper .hc-mail[aria-disabled="true"] { background:#e2e8f0; color:#46566a; cursor:not-allowed; }
+#hc-helper #hc-consent { min-height:20px; margin:0 8px 0 0; vertical-align:middle; }
+#hc-helper label[for="hc-consent"] { display:inline; font-size:13px; font-weight:400; }
+#hc-helper label[for="hc-consent"] + .hc-mail { display:block; margin-top:12px; }
+@media(max-width:480px) { #hc-helper { left:12px; bottom:12px; } #hc-helper .hc-panel { width:calc(100vw - 24px); max-height:calc(100dvh - 88px); padding:14px; } }
