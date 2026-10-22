@@ -1,3 +1,14 @@
+/* Ampliar el logo sin modificar el espacio que ocupa la cabecera. */
+.site-header .logo-image {
+  transform: scale(1.4);
+  transform-origin: center;
+}
+@media (max-width: 768px) {
+  .site-header .logo-image {
+    transform: scale(1.18);
+  }
+}
+
 :root {
   --hc-primary: #00b3a4;
   --hc-primary-dark: #00837a;
